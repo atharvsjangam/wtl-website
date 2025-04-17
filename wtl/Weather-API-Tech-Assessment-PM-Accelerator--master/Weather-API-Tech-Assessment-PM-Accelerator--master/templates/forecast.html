@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>5-Day Forecast</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>5-Day Forecast</h1>
+        </div>
+        <p>Developed by Atharva</p>
+
+        {% if forecast %}
+            <div class="weather-info">
+                <h2>Weather in {{ city }}</h2>
+                {% for day in forecast %}
+                    <div class="forecast-day">
+                        <h3>{{ day.date }}</h3>
+                        <p>Temperature: {{ day.temp }}°C</p>
+                        <p>Description: {{ day.desc }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <button class="info-button" onclick="window.location.href='/info'">Info</button>
+    </div>
+</body>
+</html>
